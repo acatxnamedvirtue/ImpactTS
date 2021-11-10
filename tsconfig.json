@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "paths": {
+      "*": ["node_modules/*"],
+      "jquery-ui": ["node_modules/@types/jqueryui/index"],
+      "nw": ["node_modules/@types/nw.js/index"]
+    }
+  },
+  "include": ["src/**/*"],
+  "outdir": "dist"
+}

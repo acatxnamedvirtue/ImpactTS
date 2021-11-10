@@ -1,0 +1,43 @@
+{
+  "name": "impactts",
+  "productName": "impactts",
+  "version": "1.0.0",
+  "description": "ImpactTS with nw.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "copy": "cp src/jumpnrun/index.html ./dist/index.html && cp -r ./media ./dist && cp ./src/impact/debug/debug.css ./dist/impact/debug/debug.css",
+    "copy-wm": "cp ./src/weltmeister/weltmeister.html ./dist/weltmeister.html && cp ./src/weltmeister/weltmeister.css ./dist/weltmeister/weltmeister.css && cp -r ./src/weltmeister/media ./dist/weltmeister/media",
+    "build": "tsc",
+    "nw": "nw",
+    "start": "yarn build && yarn copy && yarn copy-wm && yarn nw"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "author": "tbeebe",
+  "devDependencies": {
+    "@types/async": "^3.2.9",
+    "@types/jquery": "^3.5.8",
+    "@types/jqueryui": "^1.12.16",
+    "@types/js-cookie": "^3.0.0",
+    "@types/nw.js": "^0.13.14",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "^2.20.0",
+    "path": "^0.12.7",
+    "prettier": "^2.4.1",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "js-cookie": "^3.0.1",
+    "nw": "0.58.0-sdk"
+  },
+  "chromium-args": "--mixed-context",
+  "window" : {
+    "toolbar" : false,
+    "width" : 1136,
+    "height": 640,
+    "fullscreen" : false
+  }
+}
