@@ -9,6 +9,7 @@ import { wmWeltmeister } from "../weltmeister/weltmeister";
 import { wmEventedInput } from "../weltmeister/evented-input";
 import { igGame } from "./game";
 import { igImage } from "./image";
+import { plusplusInput } from "../plusplus/core/input";
 
 // -----------------------------------------------------------------------------
 // ig Namespace
@@ -16,7 +17,7 @@ import { igImage } from "./image";
 type Ig = {
   system: igSystem;
   resources: (igSound | igImage)[];
-  input: igInput | wmEventedInput;
+  input: igInput | wmEventedInput | plusplusInput;
   soundManager: igSoundManager;
   music: igMusic;
   ready: boolean;

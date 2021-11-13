@@ -359,7 +359,7 @@ export class igEntity {
       }
     }
     if (res.collision.slope) {
-      const s = res.collision.slope;
+      const s = res.slope;
 
       if (this.bounciness > 0) {
         const proj = this.vel.x * s.nx + this.vel.y * s.ny;

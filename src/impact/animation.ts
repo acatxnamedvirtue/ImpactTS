@@ -41,7 +41,7 @@ export class igAnimation {
     this.tile = this.sequence[0];
   }
 
-  rewind(): this {
+  rewind(_?: boolean, __?: boolean): this {
     this.timer.set();
     this.loopCount = 0;
     this.frame = 0;
@@ -71,7 +71,7 @@ export class igAnimation {
     this.tile = this.sequence[this.frame];
   }
 
-  draw(targetX: number, targetY: number): void {
+  draw(targetX: number, targetY: number, _?: number, __?: any): void {
     const bbsize = Math.max(this.sheet.width, this.sheet.height);
 
     // On screen?

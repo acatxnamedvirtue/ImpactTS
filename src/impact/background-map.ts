@@ -29,7 +29,7 @@ export class igBackgroundMap extends igMap {
   enabled = true;
 
   preRender = false;
-  preRenderedChunks: HTMLImageElement[][] = null;
+  preRenderedChunks: HTMLCanvasElement[][] = null;
   chunkSize = 512;
   debugChunks = false;
 
@@ -83,7 +83,7 @@ export class igBackgroundMap extends igMap {
     }
   }
 
-  preRenderChunk(cx: number, cy: number, w: number, h: number): HTMLImageElement {
+  preRenderChunk(cx: number, cy: number, w: number, h: number, _?: any, __?: any, ___?: any): HTMLCanvasElement {
     const tw = w / this.tilesize / ig.system.scale + 1;
     const th = h / this.tilesize / ig.system.scale + 1;
 
@@ -115,15 +115,7 @@ export class igBackgroundMap extends igMap {
     }
     ig.system.context = screenContext;
 
-    // Workaround for Chrome 49 bug - handling many offscreen canvases
-    // seems to slow down the browser significantly. So we convert the
-    // canvas to an image.
-    const image = new Image();
-    image.src = chunk.toDataURL();
-    image.width = chunk.width;
-    image.height = chunk.height;
-
-    return image;
+    return chunk;
   }
 
   draw(): void {

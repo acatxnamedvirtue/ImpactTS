@@ -53,7 +53,7 @@ export class igImage {
     this.data.src = this.path + "?" + Date.now();
   }
 
-  onload(): void {
+  onload(_event: Event): void {
     this.width = this.data.width;
     this.height = this.data.height;
     this.loaded = true;

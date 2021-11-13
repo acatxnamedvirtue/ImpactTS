@@ -75,3 +75,6 @@ When either the Game or Weltmeister is running, you can open the DevTools (or ha
 # License
 All code (aside from the vendored JQuery files) is licensed under the same license as ImpactJS, the MIT license.
 Feel free to use or modify this code for any purpose!
+
+# Multiline Comment Regex Matcher
+(\/)([\*])+(.|\n)+?(\2\1)

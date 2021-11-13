@@ -4,7 +4,7 @@ export type TraceResult = {
   collision: {
     x: boolean;
     y: boolean;
-    slope?: { x: number; y: number; nx: number; ny: number };
+    slope: boolean;
   };
   pos: {
     x: number;
@@ -14,12 +14,18 @@ export type TraceResult = {
     x: number;
     y: number;
   };
+  slope: {
+    x: number;
+    y: number;
+    nx: number;
+    ny: number;
+  };
 };
 
 export type TraceFunction = {
   trace: (x: number, y: number, vx: number, vy: number, objectWidth: number, objectHeight: number) => TraceResult;
 };
-type TileDef = Record<number, [number, number, number, number, boolean]>;
+export type TileDef = Record<number, [number, number, number, number, boolean]>;
 
 // Defining 'half', 'one third' and 'two thirds' as vars  makes it a bit
 // easier to read... I hope.
@@ -120,9 +126,10 @@ export class igCollisionMap extends igMap {
   static staticNoCollision = {
     trace(x: number, y: number, vx: number, vy: number, objectWidth: number, objectHeight: number): TraceResult {
       return {
-        collision: { x: false, y: false },
+        collision: { x: false, y: false, slope: false },
         pos: { x: x + vx, y: y + vy },
         tile: { x: 0, y: 0 },
+        slope: { x: 0, y: 0, nx: 0, ny: 0 },
       };
     },
   };
@@ -143,12 +150,13 @@ export class igCollisionMap extends igMap {
     }
   }
 
-  trace(x: number, y: number, vx: number, vy: number, objectWidth: number, objectHeight: number): TraceResult {
+  trace(x: number, y: number, vx: number, vy: number, objectWidth: number, objectHeight: number, _?: any): TraceResult {
     // Set up the trace-result
     const res: TraceResult = {
-      collision: { x: false, y: false },
+      collision: { x: false, y: false, slope: false },
       pos: { x: x, y: y },
       tile: { x: 0, y: 0 },
+      slope: { x: 0, y: 0, nx: 0, ny: 0 },
     };
 
     // Break the trace down into smaller steps if necessary.
@@ -187,7 +195,7 @@ export class igCollisionMap extends igMap {
     return res;
   }
 
-  private _traceStep(
+  _traceStep(
     res: TraceResult,
     x: number,
     y: number,
@@ -308,7 +316,7 @@ export class igCollisionMap extends igMap {
     // res is changed in place, nothing to return
   }
 
-  private _checkTileDef(
+  _checkTileDef(
     res: TraceResult,
     t: keyof TileDef,
     x: number,
@@ -358,7 +366,7 @@ export class igCollisionMap extends igMap {
 
       res.pos.x = x + vx - px;
       res.pos.y = y + vy - py;
-      res.collision.slope = { x: lvx, y: lvy, nx: nx, ny: ny };
+      res.slope = { x: lvx, y: lvy, nx: nx, ny: ny };
       return true;
     }
 

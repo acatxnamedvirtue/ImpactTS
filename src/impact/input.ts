@@ -3,6 +3,19 @@
 import { ig } from "./impact";
 
 export enum KEYS {
+  // Touch
+  TAP = "Tap",
+  TAP_DOUBLE = "TapDouble",
+  HOLD = "Hold",
+  HOLD_ACTIVATE = "HoldActivate",
+  SWIPE = "Swipe",
+  SWIPE_X = "SwipeX",
+  SWIPE_Y = "SwipeY",
+  SWIPE_LEFT = "SwipeLeft",
+  SWIPE_RIGHT = "SwipeRight",
+  SWIPE_UP = "SwipeUp",
+  SWIPE_DOWN = "SwipeDown",
+
   // Mouse
   LEFT_CLICK = "LeftClick",
   RIGHT_CLICK = "RightClick",
